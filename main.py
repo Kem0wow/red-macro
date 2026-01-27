@@ -29,7 +29,7 @@ class App(tk.Tk):
 
         # Tab ekleme
         self.notebook.add(self.gather_page, text="Gather")
-        self.notebook.add(self.collect_page, text="Collect")
+        self.notebook.add(self.collect_page, text="Collect/Kill")
         self.notebook.add(self.status_page, text="Status")
         self.notebook.add(self.settings_page, text="Settings")
         self.notebook.add(self.record_page, text="Record (Dev Panel)")

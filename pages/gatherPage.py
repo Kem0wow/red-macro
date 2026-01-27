@@ -6,7 +6,7 @@ class GatherPage(tk.Frame):
         super().__init__(parent)
 
         self.fields = [
-            "Sunflower", "Dandelion", "Mushroom", "Blue Flower", "Clover",
+            "None", "Sunflower", "Dandelion", "Mushroom", "Blue Flower", "Clover",
             "Strawberry", "Spider", "Bamboo", "Pineapple", "Stump", "Cactus",
             "Pumpkin", "Pine Tree", "Rose", "Mountain Top", "Pepper", "Coconut"
         ]
@@ -59,7 +59,7 @@ class GatherPage(tk.Frame):
 
         control_frame = tk.Frame(self)
         control_frame.grid(row=8, column=0, columnspan=5, sticky="ew", pady=(0, 10))
-        control_frame.columnconfigure(3, weight=1)
+        control_frame.columnconfigure(4, weight=1)
 
         start_btn = ttk.Button(control_frame,
                                text="Start [F1]", width=10)
@@ -73,6 +73,31 @@ class GatherPage(tk.Frame):
                               text="Stop [F3]", width=10)
         stop_btn.grid(row=0, column=2, padx=5, sticky="w")
 
+        hive_num_lbl = tk.Label(
+            control_frame,
+            text="Hive (from left): ",
+            font=("Arial", 9)
+        )
+        hive_num_lbl.grid(row=0, column=3, padx=5, sticky="w")
+
+        self.hive_num_var = tk.IntVar(value=1)
+        hive_num_spin = ttk.Spinbox(
+            control_frame,
+            from_=1,
+            to=6,
+            width=3,
+            textvariable=self.hive_num_var,
+            state="readonly"
+        )
+        hive_num_spin.grid(row=0, column=4, padx=5, sticky="w")
+
+        version_lbl = tk.Label(
+            control_frame,
+            text="v1.0",
+            font=("Arial", 10)
+        )
+        version_lbl.grid(row=0, column=6, padx=5, sticky="e")
+
         try:
             from PIL import Image, ImageTk
             github_pil = Image.open("icons/github.png")
@@ -80,7 +105,7 @@ class GatherPage(tk.Frame):
             github_img = ImageTk.PhotoImage(github_pil)
             github_label = tk.Label(control_frame, image=github_img, cursor="hand2", bg=self.cget("bg"))
             github_label.image = github_img
-            github_label.grid(row=0, column=4, padx=5, sticky="e")
+            github_label.grid(row=0, column=5, padx=5, sticky="e")
             github_label.bind("<Button-1>", lambda e: self.open_github())
         except:
             pass
@@ -162,7 +187,7 @@ class GatherPage(tk.Frame):
         until_frame.grid(row=row, column=4, sticky="nw")
 
         until_var = tk.IntVar(value=0)
-        pack_var = tk.IntVar(value=50)
+        pack_var = tk.IntVar(value=75)
 
         until_top = tk.Frame(until_frame)
         until_top.pack(anchor="w")
@@ -183,7 +208,7 @@ class GatherPage(tk.Frame):
 
         pack_spin = ttk.Spinbox(
             until_top,
-            from_=20,
+            from_=30,
             to=100,
             increment=5,
             width=3,
@@ -191,7 +216,7 @@ class GatherPage(tk.Frame):
             state="readonly"
         )
         pack_spin.pack(side="left")
-
+        
         until_bottom = tk.Frame(until_frame)
         until_bottom.pack(anchor="w", pady=(2, 0))
 
