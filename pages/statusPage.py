@@ -1,12 +1,9 @@
-import tkinter as tk
+import customtkinter as ctk
 
-
-class StatusPage(tk.Frame):
+class StatusPage(ctk.CTkFrame):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, fg_color="transparent")
 
-        group = tk.LabelFrame(self, text="Status Information", padx=10, pady=10)
-        group.pack(padx=10, pady=10, fill="both", expand=True)
-
-        tk.Checkbutton(group, text="Auto Restart on Failure").pack(anchor="w")
-        tk.Checkbutton(group, text="Show Notifications").pack(anchor="w")
+        self.label = ctk.CTkLabel(self, text="STATUS")
+        self.label.pack(anchor="center")
+        self.label.pack_propagate(False)
